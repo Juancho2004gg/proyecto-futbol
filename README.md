@@ -14,7 +14,7 @@ El proyecto está centrado en el diseño y prototipo funcional de la plataforma 
     - [4. Compilar Assets](#4-compilar-assets)
     - [5. Ejecutar Migraciones y Seeders](#5-ejecutar-migraciones)
     - [6. Iniciar el Servidor de Desarrollo](#6-iniciar-el-servidor-de-desarrollo)
-- [Comandos](#comandos)
+- [Comandos de Desarrollo](#comandos-de-desarrollo)
 
 ---
 ## Tecnologías Usadas
@@ -90,7 +90,7 @@ Para detener los servicios:
 ```bash
 ./vendor/bin/sail up -d
 ```
-# Comandos
+# Comandos de Desarrollo
 ## Gestión de Servicios Docker
 
 ### Iniciar todos los servicios de Docker

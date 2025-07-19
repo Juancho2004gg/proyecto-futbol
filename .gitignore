@@ -1,0 +1,31 @@
+# Node.js
+/node_modules
+/npm-debug.log
+/yarn-error.log
+.env
+.env.backup
+.env.*.local
+
+# Laravel
+/vendor
+/storage/*.bak # Example for specific backups, otherwise /storage/ can be used broadly.
+/bootstrap/cache
+
+# Compiled assets (Vite)
+/public/build
+/public/hot
+# Remove these if you are committing manifest.json.
+# /public/mix-manifest.json
+# /public/js
+# /public/css
+
+# Logs
+*.log
+
+# OS and IDE
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace

@@ -1,6 +1,7 @@
-# Nombre de Mi Proyecto (ej. Plataforma Futbol)
+# Plataforma Web Para La Promoción Y Visibilidad De Futbolistas Venezolanos Ante Patrocinadores, Agentes Y Fanáticos 
 
-Una breve descripción de tu proyecto. ¿Qué hace? ¿Qué problema resuelve?
+El proyecto está centrado en el diseño y prototipo funcional de la plataforma web, priorizando funcionalidades clave como creación de perfiles de futbolistas, búsqueda y visualización de perfiles por seguidores, y gestión de contenido multimedia (videos, fotos, trayectoria).
+
 
 ## Tabla de Contenidos
 

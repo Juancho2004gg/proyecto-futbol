@@ -14,9 +14,7 @@ El proyecto está centrado en el diseño y prototipo funcional de la plataforma 
     - [4. Compilar Assets](#4-compilar-assets)
     - [5. Ejecutar Migraciones y Seeders](#5-ejecutar-migraciones)
     - [6. Iniciar el Servidor de Desarrollo](#6-iniciar-el-servidor-de-desarrollo)
-- [Uso](#uso)
-- [Contribuciones](#contribuciones)
-- [Licencia](#licencia)
+- [Comandos](#comandos)
 
 ---
 ## Tecnologías Usadas
@@ -91,4 +89,77 @@ Iniciar todos los servicios de Docker
 Para detener los servicios:
 ```bash
 ./vendor/bin/sail up -d
+```
+# Comandos
+## Gestión de Servicios Docker
+
+### Iniciar todos los servicios de Docker
+```bash
+./vendor/bin/sail up
+
+# Para ejecutar en segundo plano (detached mode)
+./vendor/bin/sail up -d
+```
+
+### Detener todos los servicios
+```bash
+./vendor/bin/sail down
+```
+
+## Comandos de Desarrollo
+
+### Ejecutar comandos Artisan
+```bash
+./vendor/bin/sail artisan [comando-artisan]
+
+# Ejemplo
+./vendor/bin/sail artisan migrate
+```
+
+### Ejecutar comandos Composer
+```bash
+./vendor/bin/sail composer [comando-composer]
+
+# Ejemplo
+./vendor/bin/sail composer require laravel/sanctum
+```
+
+### Ejecutar comandos npm/Yarn
+```bash
+./vendor/bin/sail npm [comando-npm]
+
+# Ejemplos
+./vendor/bin/sail npm run dev
+./vendor/bin/sail yarn run dev
+```
+
+### Ejecutar comandos PHP
+```bash
+./vendor/bin/sail php [comando-php]
+
+# Ejemplo
+./vendor/bin/sail php --version
+```
+
+## Acceso a Contenedores
+
+### Conectarse a la shell del contenedor de la aplicación
+```bash
+./vendor/bin/sail bash
+```
+
+### Conectarse a la shell del contenedor de base de datos
+```bash
+# Para MySQL
+./vendor/bin/sail mysql
+
+# Para PostgreSQL
+./vendor/bin/sail psql
+```
+
+## Monitoreo y Logs
+
+### Ver los logs de los contenedores
+```bash
+./vendor/bin/sail logs -f
 ```

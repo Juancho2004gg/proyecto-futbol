@@ -59,13 +59,10 @@ Antes de comenzar, asegúrate de tener lo siguiente instalado en tu sistema:
     * [MySQL](https://dev.mysql.com/downloads/mysql/)
     * [PostgreSQL](https://www.postgresql.org/download/)
     * O asegúrate de que SQLite esté habilitado en tu instalación de PHP si usas `sqlite`.
-* **Un Servidor Web:** (A menudo integrado con el servidor de desarrollo de Laravel o mediante Valet/Laragon/XAMPP/Docker)
-    * Si usas Laravel Valet (macOS/Linux): [Laravel Valet](https://laravel.com/docs/valet)
-    * Si usas Laragon (Windows): [Laragon](https://laragon.org/)
-    * Si usas XAMPP/WAMP: [XAMPP](https://www.apachefriends.org/index.html)
-    * Si usas Docker (ej. Laravel Sail): [Docker Desktop](https://www.docker.com/products/docker-desktop/)
+* **Servidor Web:** 
+    * Docker para Laravel Sail: [Docker Desktop](https://www.docker.com/products/docker-desktop/)
 
-**Nota para Usuarios de WSL:** Si estás desarrollando dentro de un entorno Windows Subsystem for Linux (WSL), asegúrate de que todas las instalaciones de PHP, Composer, Node.js y npm/Yarn se realicen *dentro* de tu distribución WSL (ej. Ubuntu).
+**Realizar instalacion en WSL:** Todas las instalaciones de PHP, Composer, Node.js y npm/Yarn se deben realizar *dentro* de la distribución WSL (ej. Ubuntu).
 
 ## Guía de Instalación
 

@@ -79,8 +79,8 @@ php artisan key:generate
 ### 5. Ejecutar migraciones
 
 ```bash
-./vendor/bin/sail artisan migrate # Ejecuta las migraciones
-./vendor/bin/sail artisan db:seed # Opcional: solo si tienes seeders para datos iniciales
+./vendor/bin/sail artisan migrate
+./vendor/bin/sail artisan db:seed
 ```
 ### 6. Iniciar servidor de Desarrollo
 Iniciar todos los servicios de Docker

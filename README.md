@@ -1,2 +1,80 @@
-# proyecto-futbol
+# Nombre de Mi Proyecto (ej. Plataforma Futbol)
 
+Una breve descripción de tu proyecto. ¿Qué hace? ¿Qué problema resuelve?
+
+## Tabla de Contenidos
+
+- [Características](#caracter%C3%ADsticas)
+- [Tecnologías Usadas](#tecnolog%C3%ADas-usadas)
+- [Requisitos Previos](#requisitos-previos)
+- [Guía de Instalación](#gu%C3%ADa-de-instalaci%C3%B3n)
+    - [1. Clonar el Repositorio](#1-clonar-el-repositorio)
+    - [2. Instalar Dependencias PHP](#2-instalar-dependencias-php)
+    - [3. Instalar Dependencias JavaScript](#3-instalar-dependencias-javascript)
+    - [4. Configuración del Entorno](#4-configuraci%C3%B3n-del-entorno)
+    - [5. Configuración de la Base de Datos](#5-configuraci%C3%B3n-de-la-base-de-datos)
+    - [6. Generar Clave de Aplicación](#6-generar-clave-de-aplicaci%C3%B3n)
+    - [7. Compilar Assets](#7-compilar-assets)
+    - [8. Ejecutar Migraciones y Seeders (Opcional)](#8-ejecutar-migraciones-y-seeders-opcional)
+    - [9. Iniciar el Servidor de Desarrollo](#9-iniciar-el-servidor-de-desarrollo)
+- [Uso](#uso)
+- [Contribuciones](#contribuciones)
+- [Licencia](#licencia)
+
+---
+
+## Características
+
+* Enumera aquí las características clave de tu aplicación.
+* Ejemplo: Autenticación de usuario (registro, inicio de sesión, cierre de sesión)
+* Ejemplo: Creación y visualización de publicaciones
+* Ejemplo: Subida de imágenes/archivos adjuntos
+* Ejemplo: Perfiles de usuario
+* Ejemplo: Funcionalidad de búsqueda
+
+## Tecnologías Usadas
+
+* **Backend:** PHP (Framework Laravel)
+* **Frontend:** JavaScript (Vue.js)
+* **Herramienta de Compilación:** Vite
+* **Gestores de Paquetes:** Composer (para PHP), npm / Yarn (para JavaScript)
+* **Base de Datos:** MySQL / PostgreSQL / SQLite (Especifica cuál usas principalmente o soportas)
+* **Otros:** (ej. Tailwind CSS, Inertia.js, etc.)
+
+## Requisitos Previos
+
+Antes de comenzar, asegúrate de tener lo siguiente instalado en tu sistema:
+
+* **Git:** Para clonar el repositorio.
+    * [Descargar Git](https://git-scm.com/downloads)
+* **PHP:** Versión 8.1 o superior (o la versión que requiera tu proyecto Laravel).
+    * [Instalar PHP](https://www.php.net/manual/en/install.php)
+* **Composer:** Gestor de dependencias de PHP.
+    * [Instalar Composer](https://getcomposer.org/download/)
+* **Node.js:** Versión 16 o superior (o la versión que requiera tu proyecto).
+    * [Descargar Node.js](https://nodejs.org/en/download/) (Incluye npm)
+* **npm o Yarn:** Gestor de paquetes JavaScript. npm viene con Node.js. Si prefieres Yarn:
+    * [Instalar Yarn](https://classic.yarnpkg.com/lang/en/docs/install/)
+* **Servidor de Base de Datos:** (Elige uno según tu `DB_CONNECTION`)
+    * [MySQL](https://dev.mysql.com/downloads/mysql/)
+    * [PostgreSQL](https://www.postgresql.org/download/)
+    * O asegúrate de que SQLite esté habilitado en tu instalación de PHP si usas `sqlite`.
+* **Un Servidor Web:** (A menudo integrado con el servidor de desarrollo de Laravel o mediante Valet/Laragon/XAMPP/Docker)
+    * Si usas Laravel Valet (macOS/Linux): [Laravel Valet](https://laravel.com/docs/valet)
+    * Si usas Laragon (Windows): [Laragon](https://laragon.org/)
+    * Si usas XAMPP/WAMP: [XAMPP](https://www.apachefriends.org/index.html)
+    * Si usas Docker (ej. Laravel Sail): [Docker Desktop](https://www.docker.com/products/docker-desktop/)
+
+**Nota para Usuarios de WSL:** Si estás desarrollando dentro de un entorno Windows Subsystem for Linux (WSL), asegúrate de que todas las instalaciones de PHP, Composer, Node.js y npm/Yarn se realicen *dentro* de tu distribución WSL (ej. Ubuntu).
+
+## Guía de Instalación
+
+Sigue estos pasos para poner en marcha tu entorno de desarrollo.
+
+### 1. Clonar el Repositorio
+
+Abre tu terminal (ej. terminal de WSL Ubuntu si estás usando WSL) y clona el proyecto:
+
+```bash
+git clone [https://github.com/tu-usuario/tu-nombre-de-repositorio.git](https://github.com/tu-usuario/tu-nombre-de-repositorio.git)
+cd tu-nombre-de-repositorio # Reemplaza con el nombre real de tu repositorio (ej. plataformawebfutbol)

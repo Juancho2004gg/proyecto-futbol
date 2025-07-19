@@ -10,8 +10,7 @@ El proyecto está centrado en el diseño y prototipo funcional de la plataforma 
 - [Requisitos Previos](#requisitos-previos)
 - [Guía de Instalación](#gu%C3%ADa-de-instalaci%C3%B3n)
     - [1. Clonar el Repositorio](#1-clonar-el-repositorio)
-    - [2. Instalar Dependencias PHP](#2-instalar-dependencias-php)
-    - [3. Instalar Dependencias JavaScript](#3-instalar-dependencias-javascript)
+    - [2. Instalar Dependencias con Docker](#2-instalar-dependencias)
     - [4. Configuración del Entorno](#4-configuraci%C3%B3n-del-entorno)
     - [5. Configuración de la Base de Datos](#5-configuraci%C3%B3n-de-la-base-de-datos)
     - [6. Generar Clave de Aplicación](#6-generar-clave-de-aplicaci%C3%B3n)
@@ -74,18 +73,34 @@ Sigue estos pasos para poner en marcha tu entorno de desarrollo.
 Abre tu terminal (ej. terminal de WSL Ubuntu si estás usando WSL) y clona el proyecto:
 
 ```bash
-git clone [https://github.com/tu-usuario/tu-nombre-de-repositorio.git](https://github.com/tu-usuario/tu-nombre-de-repositorio.git)
-cd tu-nombre-de-repositorio # Reemplaza con el nombre real de tu repositorio (ej. plataformawebfutbol)
+git clone [https://github.com/Juancho2004gg/proyecto-futbol.git](https://github.com/Juancho2004gg/proyecto-futbol.git)
+cd proyecto-futbol
 ```
-### 2. Instalar dependencias PHP
+### 2. Instalar dependencias con Docker
 ```bash
-composer install
+docker run --rm \
+    -v "$(pwd)":/var/www/html \
+    -w /var/www/html \
+    laravelsail/php82-composer:latest \
+    composer install --ignore-platform-reqs
+
+./vendor/bin/sail up -d # Levanta los contenedores en segundo plano
+./vendor/bin/sail npm install # Instala dependencias de JavaScript
 ```
-### 3. Instalar Dependencias JavaScript
-```bash
-npm install
-```
-### 4. Generar clave de aplicacion
+
+### 3. Generar clave de aplicacion
 ```bash
 php artisan key:generate
+```
+
+### 4. Compilar assets con Sail
+```bash
+./vendor/bin/sail npm run dev
+```
+
+### 5. Ejecutar migraciones para la base de Datos
+
+```bash
+./vendor/bin/sail artisan migrate # Ejecuta las migraciones
+./vendor/bin/sail artisan db:seed # Opcional: solo si tienes seeders para datos iniciales
 ```

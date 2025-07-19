@@ -24,9 +24,9 @@ El proyecto está centrado en el diseño y prototipo funcional de la plataforma 
 * **Backend:** PHP (Framework Laravel)
 * **Frontend:** JavaScript (Vue.js)
 * **Herramienta de Compilación:** Vite
-* **Gestores de Paquetes:** Composer (para PHP), npm / Yarn (para JavaScript)
-* **Base de Datos:** MySQL / PostgreSQL / SQLite (Especifica cuál usas principalmente o soportas)
-* **Otros:** (ej. Tailwind CSS, Inertia.js, etc.)
+* **Gestores de Paquetes:** Composer (para PHP), npm (para JavaScript)
+* **Base de Datos:** MySQL
+* **Otros:** (Tailwind CSS, Inertia.js, etc.)
 
 ## Requisitos Previos
 

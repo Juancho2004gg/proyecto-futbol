@@ -76,11 +76,16 @@ Abre tu terminal (ej. terminal de WSL Ubuntu si estás usando WSL) y clona el pr
 ```bash
 git clone [https://github.com/tu-usuario/tu-nombre-de-repositorio.git](https://github.com/tu-usuario/tu-nombre-de-repositorio.git)
 cd tu-nombre-de-repositorio # Reemplaza con el nombre real de tu repositorio (ej. plataformawebfutbol)
-
+```
 ### 2. Instalar dependencias PHP
 ```bash
 composer install
-
+```
 ### 3. Instalar Dependencias JavaScript
 ```bash
 npm install
+```
+### 4. Generar clave de aplicacion
+```bash
+php artisan key:generate
+```

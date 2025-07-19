@@ -5,33 +5,20 @@ El proyecto está centrado en el diseño y prototipo funcional de la plataforma 
 
 ## Tabla de Contenidos
 
-- [Características](#caracter%C3%ADsticas)
 - [Tecnologías Usadas](#tecnolog%C3%ADas-usadas)
 - [Requisitos Previos](#requisitos-previos)
 - [Guía de Instalación](#gu%C3%ADa-de-instalaci%C3%B3n)
     - [1. Clonar el Repositorio](#1-clonar-el-repositorio)
     - [2. Instalar Dependencias con Docker](#2-instalar-dependencias)
-    - [4. Configuración del Entorno](#4-configuraci%C3%B3n-del-entorno)
-    - [5. Configuración de la Base de Datos](#5-configuraci%C3%B3n-de-la-base-de-datos)
-    - [6. Generar Clave de Aplicación](#6-generar-clave-de-aplicaci%C3%B3n)
-    - [7. Compilar Assets](#7-compilar-assets)
-    - [8. Ejecutar Migraciones y Seeders (Opcional)](#8-ejecutar-migraciones-y-seeders-opcional)
-    - [9. Iniciar el Servidor de Desarrollo](#9-iniciar-el-servidor-de-desarrollo)
+    - [3. Generar Clave de Aplicación](#3-generar-clave-de-aplicacion)
+    - [4. Compilar Assets](#4-compilar-assets)
+    - [5. Ejecutar Migraciones y Seeders](#5-ejecutar-migraciones)
+    - [6. Iniciar el Servidor de Desarrollo](#6-iniciar-el-servidor-de-desarrollo)
 - [Uso](#uso)
 - [Contribuciones](#contribuciones)
 - [Licencia](#licencia)
 
 ---
-
-## Características
-
-* Enumera aquí las características clave de tu aplicación.
-* Ejemplo: Autenticación de usuario (registro, inicio de sesión, cierre de sesión)
-* Ejemplo: Creación y visualización de publicaciones
-* Ejemplo: Subida de imágenes/archivos adjuntos
-* Ejemplo: Perfiles de usuario
-* Ejemplo: Funcionalidad de búsqueda
-
 ## Tecnologías Usadas
 
 * **Backend:** PHP (Framework Laravel)
@@ -43,22 +30,17 @@ El proyecto está centrado en el diseño y prototipo funcional de la plataforma 
 
 ## Requisitos Previos
 
-Antes de comenzar, asegúrate de tener lo siguiente instalado en tu sistema:
-
 * **Git:** Para clonar el repositorio.
     * [Descargar Git](https://git-scm.com/downloads)
-* **PHP:** Versión 8.1 o superior (o la versión que requiera tu proyecto Laravel).
+* **PHP:** Versión 8.1 o superior
     * [Instalar PHP](https://www.php.net/manual/en/install.php)
 * **Composer:** Gestor de dependencias de PHP.
     * [Instalar Composer](https://getcomposer.org/download/)
 * **Node.js:** Versión 16 o superior (o la versión que requiera tu proyecto).
     * [Descargar Node.js](https://nodejs.org/en/download/) (Incluye npm)
-* **npm o Yarn:** Gestor de paquetes JavaScript. npm viene con Node.js. Si prefieres Yarn:
-    * [Instalar Yarn](https://classic.yarnpkg.com/lang/en/docs/install/)
-* **Servidor de Base de Datos:** (Elige uno según tu `DB_CONNECTION`)
+* **npm o Yarn:** Gestor de paquetes JavaScript. npm viene con Node.js.
+* **Servidor de Base de Datos:** 
     * [MySQL](https://dev.mysql.com/downloads/mysql/)
-    * [PostgreSQL](https://www.postgresql.org/download/)
-    * O asegúrate de que SQLite esté habilitado en tu instalación de PHP si usas `sqlite`.
 * **Servidor Web:** 
     * Docker para Laravel Sail: [Docker Desktop](https://www.docker.com/products/docker-desktop/)
 
@@ -66,11 +48,9 @@ Antes de comenzar, asegúrate de tener lo siguiente instalado en tu sistema:
 
 ## Guía de Instalación
 
-Sigue estos pasos para poner en marcha tu entorno de desarrollo.
-
 ### 1. Clonar el Repositorio
 
-Abre tu terminal (ej. terminal de WSL Ubuntu si estás usando WSL) y clona el proyecto:
+Abrir terminal de WSL Ubuntu y clonar el proyecto:
 
 ```bash
 git clone [https://github.com/Juancho2004gg/proyecto-futbol.git](https://github.com/Juancho2004gg/proyecto-futbol.git)
@@ -98,9 +78,19 @@ php artisan key:generate
 ./vendor/bin/sail npm run dev
 ```
 
-### 5. Ejecutar migraciones para la base de Datos
+### 5. Ejecutar migraciones
 
 ```bash
 ./vendor/bin/sail artisan migrate # Ejecuta las migraciones
 ./vendor/bin/sail artisan db:seed # Opcional: solo si tienes seeders para datos iniciales
+```
+### 6. Iniciar servidor de Desarrollo
+Iniciar todos los servicios de Docker
+```bash
+./vendor/bin/sail up -d
+```
+
+Para detener los servicios:
+```bash
+./vendor/bin/sail up -d
 ```

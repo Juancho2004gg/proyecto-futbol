@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\User;
 use App\Http\Resources\PostResource;
 use App\Http\Resources\UserResource;
 use App\Models\Post;
@@ -30,13 +30,17 @@ class HomeController extends Controller
             ->paginate(10);
 
         $posts = PostResource::collection($posts);
+
+
+        $futbolistas = User::where('role', 'futbolista')->get();
         if ($request->wantsJson()) {
             return $posts;
         }
-
         return Inertia::render('Home', [
+
             'posts' => $posts,
-            'followings' => UserResource::collection($user->followings)
+            'followings' => UserResource::collection($user->followings),
+            'users' => UserResource::collection($futbolistas),
         ]);
     }
 }

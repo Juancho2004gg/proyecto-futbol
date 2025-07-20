@@ -12,7 +12,7 @@ defineProps({
 </script>
 
 <template>
-    <TextInput :model-value="searchKeyword" placeholder="Escriba para buscar" class="w-full mt-3"/>
+    <TextInput :model-value="searchKeyword" placeholder="Buscar seguidos..." class="w-full mt-3"/>
     <div class="mt-3 h-[200px] lg:flex-1 overflow-auto">
         <div v-if="false" class="text-gray-400 text-center p-3">
             No has seguido a nadie.

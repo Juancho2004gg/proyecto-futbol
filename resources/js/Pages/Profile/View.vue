@@ -44,11 +44,16 @@ const props = defineProps({
     user: {
         type: Object
     },
+    player_profiles: {
+        type: Object,
+    },
     posts: Object,
     followers: Array,
     followings: Array,
     photos: Array
 });
+console.log('props.user.role:', props.user)
+console.log('props.player_profiles:', props.player_profiles)
 
 const isMyProfile = computed(() => authUser && props.user && authUser.id === props.user.id)
 
@@ -233,11 +238,15 @@ function followUser() {
                         <Tab v-slot="{ selected }" as="template">
                             <TabItem text="Fotos" :selected="selected"/>
                         </Tab>
-                        <Tab v-if="isMyProfile" v-slot="{ selected }" as="template">
+                        <Tab v-slot="{ selected }" as="template">
                             <TabItem text="Mi Perfil" :selected="selected"/>
                         </Tab>
-                        <Tab v-if="isMyProfile && authUser.role === 'futbolista'" v-slot="{ selected }" as="template">
-                            <TabItem text="Trayectoria deportiva" :selected="selected"/>
+                        <Tab v-slot="{ selected }" as="template">
+                            <TabItem
+                                text="Trayectoria deportiva"
+                                :selected="selected"
+                                :class="{'opacity-50 pointer-events-none': props.user.role !== 'futbolista'}"
+                            />
                         </Tab>
                     </TabList>
 
@@ -284,22 +293,31 @@ function followUser() {
                         <TabPanel>
                             <TabPhotos :photos="photos" />
                         </TabPanel>
-                        <TabPanel v-if="isMyProfile">
-                            <Edit :must-verify-email="mustVerifyEmail" :status="status"/>
+                        <TabPanel>
+                            <template v-if="isMyProfile">
+                                <Edit :must-verify-email="mustVerifyEmail" :status="status"/>
+                            </template>
                         </TabPanel>
-                        <TabPanel v-if="isMyProfile && authUser.role === 'futbolista'">
-                            <div class="p-4 bg-white dark:bg-gray-900 rounded shadow">
-                                <h2 class="text-lg font-bold mb-4">Trayectoria Deportiva</h2>
-                                <div class="mb-2"><span class="font-semibold">Edad:</span> {{ user.age || 'No especificado' }}</div>
-                                <div class="mb-2"><span class="font-semibold">Posición(es):</span> {{ user.positions || 'No especificado' }}</div>
-                                <div class="mb-2"><span class="font-semibold">Pierna hábil:</span> {{ user.preferred_foot || 'No especificado' }}</div>
-                                <div class="mb-2"><span class="font-semibold">Club(es) actual(es):</span> {{ user.current_clubs || 'No especificado' }}</div>
-                                <div class="mb-2"><span class="font-semibold">Club(es) anteriores:</span> {{ user.previous_clubs || 'No especificado' }}</div>
-                                <div class="mb-2"><span class="font-semibold">Ligas y temporadas:</span> {{ user.leagues_seasons || 'No especificado' }}</div>
-                                <div class="mb-2"><span class="font-semibold">Estadísticas relevantes:</span> {{ user.stats || 'No especificado' }}</div>
-                                <div class="mb-2"><span class="font-semibold">Logros y distinciones:</span> {{ user.achievements || 'No especificado' }}</div>
-                                <div class="mb-2"><span class="font-semibold">Sobre mí:</span> {{ user.about || 'No especificado' }}</div>
-                            </div>
+                        <TabPanel>
+                            <template v-if="props.user.role === 'futbolista'">
+                                <div class="p-4 bg-white dark:bg-gray-900 rounded shadow">
+                                    <h2 class="text-lg font-bold mb-4">Trayectoria Deportiva</h2>
+                                    <div class="mb-2"><span class="font-semibold">Edad:</span> {{ props.player_profiles.age || 'No especificado' }}</div>
+                                    <div class="mb-2"><span class="font-semibold">Posición(es):</span> {{ props.player_profiles.positions || 'No especificado' }}</div>
+                                    <div class="mb-2"><span class="font-semibold">Pierna hábil:</span> {{ props.player_profiles.preferred_foot || 'No especificado' }}</div>
+                                    <div class="mb-2"><span class="font-semibold">Club(es) actual(es):</span> {{ props.player_profiles.current_clubs || 'No especificado' }}</div>
+                                    <div class="mb-2"><span class="font-semibold">Club(es) anteriores:</span> {{ props.player_profiles.previous_clubs || 'No especificado' }}</div>
+                                    <div class="mb-2"><span class="font-semibold">Ligas y temporadas:</span> {{ props.player_profiles.leagues_seasons || 'No especificado' }}</div>
+                                    <div class="mb-2"><span class="font-semibold">Estadísticas relevantes:</span> {{ props.player_profiles.stats || 'No especificado' }}</div>
+                                    <div class="mb-2"><span class="font-semibold">Logros y distinciones:</span> {{ props.player_profiles.achievements || 'No especificado' }}</div>
+                                    <div class="mb-2"><span class="font-semibold">Sobre mí:</span> {{ props.player_profiles.about || 'No especificado' }}</div>
+                                </div>
+                            </template>
+                            <template v-else>
+                                <div class="p-4 text-center text-gray-400">
+                                    Este usuario no tiene trayectoria deportiva.
+                                </div>
+                            </template>
                         </TabPanel>
                     </TabPanels>
                 </TabGroup>
@@ -311,3 +329,4 @@ function followUser() {
 <style scoped>
 
 </style>
+

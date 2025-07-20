@@ -10,6 +10,7 @@ use App\Models\Follower;
 use App\Models\Post;
 use App\Models\PostAttachment;
 use App\Models\User;
+use App\Models\PlayerProfile;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -23,6 +24,7 @@ class ProfileController extends Controller
 {
     public function index(Request $request, User $user)
     {
+        $user->load('playerProfile');
         $isCurrentUserFollower = false;
         if (!Auth::guest()) {
             $isCurrentUserFollower = Follower::where('user_id', $user->id)->where('follower_id', Auth::id())->exists();
@@ -58,6 +60,7 @@ class ProfileController extends Controller
             'isCurrentUserFollower' => $isCurrentUserFollower,
             'followerCount' => $followerCount,
             'user' => new UserResource($user),
+            'player_profiles' => $user->playerProfile,
             'posts' => $posts,
             'followers' => UserResource::collection($followers),
             'followings' => UserResource::collection($followings),

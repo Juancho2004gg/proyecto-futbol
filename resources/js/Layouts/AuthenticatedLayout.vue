@@ -28,16 +28,21 @@ function toggleDarkMode(){
     }
 }
 
+// Check for dark mode preference on component mount
+onMounted(() => {
+    if (localStorage.getItem('darkMode') === '1') {
+        document.documentElement.classList.add('dark');
+    }
+});
+
 </script>
 
 <template>
     <div class="h-full overflow-hidden flex flex-col bg-gray-100 dark:bg-gray-800">
         <nav class="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700">
-            <!-- Primary Navigation Menu -->
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex items-center justify-between gap-2 h-16">
                     <div class="flex mr-2">
-                        <!-- Logo -->
                         <div class="shrink-0 flex items-center">
                             <Link :href="route('dashboard')">
                                 <ApplicationLogo
@@ -58,7 +63,6 @@ function toggleDarkMode(){
                     </div>
 
                     <div class="hidden sm:flex sm:items-center">
-                        <!-- Settings Dropdown -->
                         <div class="ms-3 relative">
                             <Dropdown v-if="authUser" align="right" width="48">
                                 <template #trigger>
@@ -102,7 +106,6 @@ function toggleDarkMode(){
                         </div>
                     </div>
 
-                    <!-- Hamburger -->
                     <div class="-me-2 flex items-center sm:hidden">
                         <button
                             @click="showingNavigationDropdown = !showingNavigationDropdown"
@@ -111,9 +114,9 @@ function toggleDarkMode(){
                             <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                                 <path
                                     :class="{
-                                            hidden: showingNavigationDropdown,
-                                            'inline-flex': !showingNavigationDropdown,
-                                        }"
+                                        hidden: showingNavigationDropdown,
+                                        'inline-flex': !showingNavigationDropdown,
+                                    }"
                                     stroke-linecap="round"
                                     stroke-linejoin="round"
                                     stroke-width="2"
@@ -121,9 +124,9 @@ function toggleDarkMode(){
                                 />
                                 <path
                                     :class="{
-                                            hidden: !showingNavigationDropdown,
-                                            'inline-flex': showingNavigationDropdown,
-                                        }"
+                                        hidden: !showingNavigationDropdown,
+                                        'inline-flex': showingNavigationDropdown,
+                                    }"
                                     stroke-linecap="round"
                                     stroke-linejoin="round"
                                     stroke-width="2"
@@ -135,13 +138,10 @@ function toggleDarkMode(){
                 </div>
             </div>
 
-            <!-- Responsive Navigation Menu -->
             <div
                 :class="{ block: showingNavigationDropdown, hidden: !showingNavigationDropdown }"
                 class="sm:hidden"
             >
-
-                <!-- Responsive Settings Options -->
                 <div class="pt-4 pb-1 border-t border-gray-200 dark:border-gray-600">
                     <template v-if="authUser">
                         <div class="px-4">
@@ -159,23 +159,44 @@ function toggleDarkMode(){
                             </ResponsiveNavLink>
                         </div>
                     </template>
-                    <template>
-                        Login
+                    <template v-else>
+                        <ResponsiveNavLink :href="route('login')">
+                            Iniciar sesión
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink :href="route('register')">
+                            Registrarse
+                        </ResponsiveNavLink>
                     </template>
                 </div>
             </div>
         </nav>
 
-        <!-- Page Heading -->
         <header class="bg-white dark:bg-gray-800 shadow" v-if="$slots.header">
             <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                 <slot name="header"/>
             </div>
         </header>
 
-        <!-- Page Content -->
         <main class="flex-1 overflow-hidden">
-            <slot/>
+            <div class="flex h-full max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8 gap-4">
+
+                <div class="lg:w-[220px] xl:w-[280px] hidden lg:block flex-shrink-0 overflow-hidden">
+                    <slot name="leftSidebar" />
+                </div>
+
+                <div class="flex-1 flex flex-col overflow-auto">
+                    <slot />
+                </div>
+
+                <div class="lg:w-[220px] xl:w-[280px] hidden lg:block flex-shrink-0 overflow-hidden">
+                    <slot name="rightSidebar" />
+                </div>
+
+            </div>
         </main>
     </div>
 </template>
+
+<style scoped>
+
+</style>

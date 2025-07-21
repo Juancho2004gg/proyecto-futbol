@@ -75,15 +75,6 @@ ENV VITE_APP_URL=https://proyecto-futbol-production.up.railway.app
 RUN rm -rf public/build
 RUN npm run build
 
-# Asegura permisos de escritura para el usuario que ejecuta PHP (si usas 'sail' o similar)
-# Esto es importante para que Laravel pueda escribir en el volumen montado.
-RUN chown -R sail:sail /var/www/html/storage
-RUN chmod -R 775 /var/www/html/storage
-
-RUN php artisan storage:link
-
-
-
 COPY start-container /usr/local/bin/start-container
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY php.ini /etc/php/8.3/cli/conf.d/99-sail.ini

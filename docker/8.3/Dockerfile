@@ -56,8 +56,8 @@ RUN useradd -ms /bin/bash --no-user-group -g $WWWGROUP -u 1337 sail
 
 
 COPY . /var/www/html
-RUN mkdir -p /var/www/html/bootstrap/cache && chmod -R 775 /var/www/html/bootstrap/cache
 ENV COMPOSER_MEMORY_LIMIT=-1
+RUN mkdir -p /var/www/html/bootstrap/cache && chmod -R 775 /var/www/html/bootstrap/cache
 RUN composer install --no-interaction --prefer-dist --optimize-autoloader --verbose
 RUN npm install --no-audit --no-fund
 RUN npm run build

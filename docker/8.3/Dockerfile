@@ -62,7 +62,7 @@ RUN composer install --no-interaction --prefer-dist --optimize-autoloader --verb
 RUN npm install --no-audit --no-fund
 RUN php artisan config:cache
 RUN php artisan route:cache
-ENV APP_URL=https://proyecto-futbol-production.up.railway.app
+ENV VITE_APP_URL=https://proyecto-futbol-production.up.railway.app
 RUN rm -rf public/build
 RUN npm run build
 COPY start-container /usr/local/bin/start-container

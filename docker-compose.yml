@@ -6,8 +6,8 @@ services:
         environment:
             PMA_HOST: mysql # Connects to your 'mysql' service
             PMA_PORT: 3306
-            PMA_USER: '${DB_USERNAME}' # Uses the username from your .env
-            PMA_PASSWORD: '${DB_PASSWORD}' # Uses the password from your .env
+            PMA_USER: root
+            PMA_PASSWORD: ''
             PMA_ARBITRARY: 1
         ports:
             - '${PMA_PORT:-8080}:80' # Access phpMyAdmin on port 8080 (or change if 8080 is used)
@@ -47,11 +47,11 @@ services:
         ports:
             - '${FORWARD_DB_PORT:-3306}:3306'
         environment:
-            MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
+            MYSQL_ROOT_PASSWORD: ''
             MYSQL_ROOT_HOST: '%'
             MYSQL_DATABASE: '${DB_DATABASE}'
-            MYSQL_USER: '${DB_USERNAME}'
-            MYSQL_PASSWORD: '${DB_PASSWORD}'
+            MYSQL_USER: root
+            MYSQL_PASSWORD: ''
             MYSQL_ALLOW_EMPTY_PASSWORD: 1
         volumes:
             - 'sail-mysql:/var/lib/mysql'

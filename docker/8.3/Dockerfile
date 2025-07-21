@@ -61,11 +61,12 @@ RUN mkdir -p /var/www/html/bootstrap/cache && chmod -R 775 /var/www/html/bootstr
 RUN composer install --no-interaction --prefer-dist --optimize-autoloader --verbose
 RUN npm install --no-audit --no-fund
 RUN npm run build
+RUN php artisan config:cache
 COPY start-container /usr/local/bin/start-container
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY php.ini /etc/php/8.3/cli/conf.d/99-sail.ini
 RUN chmod +x /usr/local/bin/start-container
 
-EXPOSE 9000
+EXPOSE 8080
 
 ENTRYPOINT ["start-container"]

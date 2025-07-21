@@ -60,8 +60,11 @@ ENV COMPOSER_MEMORY_LIMIT=-1
 RUN mkdir -p /var/www/html/bootstrap/cache && chmod -R 775 /var/www/html/bootstrap/cache
 RUN composer install --no-interaction --prefer-dist --optimize-autoloader --verbose
 RUN npm install --no-audit --no-fund
-RUN npm run build
 RUN php artisan config:cache
+RUN php artisan route:cache
+ENV APP_URL=https://proyecto-futbol-production.up.railway.app
+RUN rm -rf public/build
+RUN npm run build
 COPY start-container /usr/local/bin/start-container
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY php.ini /etc/php/8.3/cli/conf.d/99-sail.ini

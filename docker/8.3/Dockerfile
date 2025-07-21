@@ -59,22 +59,28 @@ COPY . /var/www/html
 ENV COMPOSER_MEMORY_LIMIT=-1
 RUN mkdir -p /var/www/html/bootstrap/cache && chmod -R 775 /var/www/html/bootstrap/cache
 
-# ... (código previo del Dockerfile) ...
 
 RUN composer install --no-interaction --prefer-dist --optimize-autoloader --verbose
 RUN npm install --no-audit --no-fund
 
-# *** MUY IMPORTANTE: LIMPIAR LAS CACHÉS AQUÍ ***
 RUN php artisan config:clear
 RUN php artisan cache:clear
 RUN php artisan view:clear
-# *** FIN DE LAS LÍNEAS IMPORTANTES ***
+
+# Cachea configuración y rutas
+RUN php artisan config:cache
+RUN php artisan route:cache
 
 ENV VITE_APP_URL=https://proyecto-futbol-production.up.railway.app
 RUN rm -rf public/build
 RUN npm run build
 
-# ... (resto del Dockerfile) ...
+RUN php artisan storage:link
+
+# Asegura permisos de escritura para el usuario que ejecuta PHP (si usas 'sail' o similar)
+# Esto es importante para que Laravel pueda escribir en el volumen montado.
+RUN chown -R sail:sail /var/www/html/storage
+RUN chmod -R 775 /var/www/html/storage
 
 COPY start-container /usr/local/bin/start-container
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf

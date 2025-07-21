@@ -32,9 +32,7 @@ return [
 
         'sync' => [
             'driver' => 'sync',
-        ],
-
-        'database' => [
+            // AWS config removed
             'driver' => 'database',
             'table' => 'jobs',
             'queue' => 'default',

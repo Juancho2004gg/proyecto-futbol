@@ -58,13 +58,28 @@ RUN useradd -ms /bin/bash --no-user-group -g $WWWGROUP -u 1337 sail
 COPY . /var/www/html
 ENV COMPOSER_MEMORY_LIMIT=-1
 RUN mkdir -p /var/www/html/bootstrap/cache && chmod -R 775 /var/www/html/bootstrap/cache
+
+# ... (código previo del Dockerfile) ...
+
 RUN composer install --no-interaction --prefer-dist --optimize-autoloader --verbose
 RUN npm install --no-audit --no-fund
+
+# *** MUY IMPORTANTE: LIMPIAR LAS CACHÉS AQUÍ ***
+RUN php artisan config:clear
+RUN php artisan cache:clear
+RUN php artisan view:clear
+# *** FIN DE LAS LÍNEAS IMPORTANTES ***
+
+# Ahora sí, cachear la configuración y rutas DESPUÉS de limpiar
 RUN php artisan config:cache
 RUN php artisan route:cache
+
 ENV VITE_APP_URL=https://proyecto-futbol-production.up.railway.app
 RUN rm -rf public/build
 RUN npm run build
+
+# ... (resto del Dockerfile) ...
+
 COPY start-container /usr/local/bin/start-container
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY php.ini /etc/php/8.3/cli/conf.d/99-sail.ini

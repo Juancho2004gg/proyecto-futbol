@@ -300,7 +300,7 @@ function followUser() {
                         </TabPanel>
                         <TabPanel>
                             <template v-if="props.user.role === 'futbolista'">
-                                <div class="p-4 bg-white dark:bg-gray-900 rounded shadow">
+                                <div class="p-4 bg-white dark:bg-gray-900 dark:text-gray-100 rounded shadow">
                                     <h2 class="text-lg font-bold mb-4">Trayectoria Deportiva</h2>
                                     <div class="mb-2"><span class="font-semibold">Edad:</span> {{ props.player_profiles.age || 'No especificado' }}</div>
                                     <div class="mb-2"><span class="font-semibold">Posición(es):</span> {{ props.player_profiles.positions || 'No especificado' }}</div>

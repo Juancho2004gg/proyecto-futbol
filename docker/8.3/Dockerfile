@@ -56,7 +56,8 @@ RUN useradd -ms /bin/bash --no-user-group -g $WWWGROUP -u 1337 sail
 
 
 COPY . /var/www/html
-RUN composer install --no-interaction --prefer-dist --optimize-autoloader
+ENV COMPOSER_MEMORY_LIMIT=-1
+RUN composer install --no-interaction --prefer-dist --optimize-autoloader --verbose
 RUN npm install --no-audit --no-fund
 RUN npm run build
 COPY start-container /usr/local/bin/start-container

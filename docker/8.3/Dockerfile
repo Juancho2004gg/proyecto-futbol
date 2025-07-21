@@ -70,10 +70,6 @@ RUN php artisan cache:clear
 RUN php artisan view:clear
 # *** FIN DE LAS LÍNEAS IMPORTANTES ***
 
-# Ahora sí, cachear la configuración y rutas DESPUÉS de limpiar
-RUN php artisan config:cache
-RUN php artisan route:cache
-
 ENV VITE_APP_URL=https://proyecto-futbol-production.up.railway.app
 RUN rm -rf public/build
 RUN npm run build

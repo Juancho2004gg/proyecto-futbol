@@ -1,10 +1,12 @@
-
+// vite.config.js
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
 import vue from '@vitejs/plugin-vue';
 
 export default defineConfig({
-    base: process.env.VITE_APP_URL ? process.env.VITE_APP_URL + '/' : '/',
+    // Cambia esta línea
+    base: '/', // Esto hará que Vite genere rutas relativas como /build/assets/app-03df23ca.css
+
     plugins: [
         laravel({
             input: 'resources/js/app.js',

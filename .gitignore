@@ -9,7 +9,7 @@
 # Laravel
 /vendor
 /storage/*.bak # Example for specific backups, otherwise /storage/ can be used broadly.
-/bootstrap/cache
+
 
 # Compiled assets (Vite)
 /public/build

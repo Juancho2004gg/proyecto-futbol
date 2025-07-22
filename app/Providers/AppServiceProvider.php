@@ -27,13 +27,6 @@ class AppServiceProvider extends ServiceProvider
         if ($this->app->environment('production')) {
             \URL::forceScheme('https');
         }
-        Log::info('Cloudinary config', [
-            'cloud_name_raw' => env('CLOUDINARY_CLOUD_NAME'),
-            'cloud_name_trimmed' => trim(env('CLOUDINARY_CLOUD_NAME'), '"'),
-            'api_key_raw' => env('CLOUDINARY_API_KEY'),
-            'api_key_trimmed' => trim(env('CLOUDINARY_API_KEY'), '"'),
-            'api_secret_raw' => env('CLOUDINARY_API_SECRET'),
-            'api_secret_trimmed' => trim(env('CLOUDINARY_API_SECRET'), '"'),
-        ]);
+
     }
 }

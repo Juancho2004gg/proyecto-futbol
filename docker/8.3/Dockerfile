@@ -12,6 +12,15 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV TZ=UTC
 
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+# Instala Nginx
+RUN apt-get update && apt-get install -y nginx \
+    && apt-get -y autoremove \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+# Copia la configuración de Nginx al lugar adecuado
+COPY nginx.conf /etc/nginx/sites-available/default.conf
+# Crea un enlace simbólico para activar la configuración
+RUN ln -sf /etc/nginx/sites-available/default.conf /etc/nginx/sites-enabled/default.conf
 
 RUN apt-get update \
     && mkdir -p /etc/apt/keyrings \

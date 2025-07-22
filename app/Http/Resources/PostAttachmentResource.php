@@ -20,7 +20,7 @@ class PostAttachmentResource extends JsonResource
             'name' => $this->name,
             'mime' => $this->mime,
             'size' => $this->size,
-            'url' => Storage::url($this->path),
+            'url' => $this->path,
             'created_at' => $this->created_at,
         ];
     }

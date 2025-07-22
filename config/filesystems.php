@@ -28,8 +28,8 @@ return [
     |
     */
 
-    'disks' => [
 
+    'disks' => [
         'local' => [
             'driver' => 'local',
             'root' => storage_path('app'),
@@ -44,12 +44,13 @@ return [
             'throw' => false,
         ],
 
-        's3' => [
-            'driver' => 's3',
-            // AWS config removed
-            'throw' => false,
+        'cloudinary' => [
+            'driver'     => 'cloudinary',
+            'api_key'    => env('CLOUDINARY_API_KEY'),
+            'api_secret' => env('CLOUDINARY_API_SECRET'),
+            'cloud_name' => env('CLOUDINARY_CLOUD_NAME'),
+            'secure'     => env('CLOUDINARY_SECURE', true),
         ],
-
     ],
 
     /*

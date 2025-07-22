@@ -121,19 +121,19 @@ class ProfileController extends Controller
         $success = '';
         if ($cover) {
             if ($user->cover_path) {
-                Storage::disk('public')->delete($user->cover_path);
             }
-            $path = $cover->store('user-' . $user->id, 'public');
-            $user->update(['cover_path' => $path]);
+            $path = Storage::disk('cloudinary')->put('user-' . $user->id, $cover);
+            $url = Storage::disk('cloudinary')->url($path);
+            $user->update(['cover_path' => $url]);
             $success = 'Your cover image was updated';
         }
 
         if ($avatar) {
             if ($user->avatar_path) {
-                Storage::disk('public')->delete($user->avatar_path);
             }
-            $path = $avatar->store('user-' . $user->id, 'public');
-            $user->update(['avatar_path' => $path]);
+            $path = Storage::disk('cloudinary')->put('user-' . $user->id, $avatar);
+            $url = Storage::disk('cloudinary')->url($path);
+            $user->update(['avatar_path' => $url]);
             $success = 'Your avatar image was updated';
         }
 

@@ -62,12 +62,13 @@ class PostController extends Controller
             /** @var \Illuminate\Http\UploadedFile[] $files */
             $files = $data['attachments'] ?? [];
             foreach ($files as $file) {
-                $path = $file->store('attachments/' . $post->id, 'public');
+                $path = Storage::disk('cloudinary')->put('attachments/' . $post->id, $file);
+                $url = Storage::disk('cloudinary')->url($path);
                 $allFilePaths[] = $path;
                 PostAttachment::create([
                     'post_id' => $post->id,
                     'name' => $file->getClientOriginalName(),
-                    'path' => $path,
+                    'path' => $url,
                     'mime' => $file->getMimeType(),
                     'size' => $file->getSize(),
                     'created_by' => $user->id
@@ -118,12 +119,13 @@ class PostController extends Controller
             /** @var \Illuminate\Http\UploadedFile[] $files */
             $files = $data['attachments'] ?? [];
             foreach ($files as $file) {
-                $path = $file->store('attachments/' . $post->id, 'public');
+                $path = Storage::disk('cloudinary')->put('attachments/' . $post->id, $file);
+                $url = Storage::disk('cloudinary')->url($path);
                 $allFilePaths[] = $path;
                 PostAttachment::create([
                     'post_id' => $post->id,
                     'name' => $file->getClientOriginalName(),
-                    'path' => $path,
+                    'path' => $url,
                     'mime' => $file->getMimeType(),
                     'size' => $file->getSize(),
                     'created_by' => $user->id

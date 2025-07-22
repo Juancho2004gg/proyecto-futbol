@@ -27,9 +27,6 @@ RUN apt-get update \
        php8.3-intl php8.3-readline \
        php8.3-ldap \
        php8.3-fpm \
-       # php8.3-msgpack php8.3-igbinary php8.3-redis php8.3-swoole \
-       # php8.3-memcached php8.3-pcov php8.3-xdebug \
-       # php8.3-imagick \
     && curl -sLS https://getcomposer.org/installer | php -- --install-dir=/usr/bin/ --filename=composer \
     && curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg \
     && echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_VERSION.x nodistro main" > /etc/apt/sources.list.d/nodesource.list \
@@ -55,7 +52,13 @@ RUN setcap "cap_net_bind_service=+ep" /usr/bin/php8.3
 RUN groupadd --force -g $WWWGROUP sail
 RUN useradd -ms /bin/bash --no-user-group -g $WWWGROUP -u 1337 sail
 
+# Cuando el Dockerfile está en una subcarpeta (ej. 'docker/Dockerfile'),
+# 'COPY . /var/www/html' copiará el *contenido de la subcarpeta* a /var/www/html.
+# Esto significa que supervisord.conf y start-container (y el Dockerfile mismo)
+# terminan en /var/www/html en el contenedor.
 
+# Por lo tanto, necesitamos copiarlos desde /var/www/html a sus destinos finales.
+# Esto es diferente de cuando estaban en la raíz del proyecto.
 COPY . /var/www/html
 ENV COMPOSER_MEMORY_LIMIT=-1
 RUN mkdir -p /var/www/html/bootstrap/cache && chmod -R 775 /var/www/html/bootstrap/cache
@@ -76,9 +79,10 @@ ENV VITE_APP_URL=https://proyecto-futbol-production.up.railway.app
 RUN rm -rf public/build
 RUN npm run build
 
-COPY start-container /usr/local/bin/start-container
-COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-COPY php.ini /etc/php/8.3/cli/conf.d/99-sail.ini
+
+COPY /var/www/html/start-container /usr/local/bin/start-container
+COPY /var/www/html/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+COPY /var/www/html/php.ini /etc/php/8.3/cli/conf.d/99-sail.ini
 RUN chmod +x /usr/local/bin/start-container
 
 EXPOSE 8080

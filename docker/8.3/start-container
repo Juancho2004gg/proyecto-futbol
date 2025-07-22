@@ -10,24 +10,17 @@ fi
 
 chmod -R ugo+rw /.composer
 
-
-# 1. Asegura los permisos de escritura para el usuario 'sail' en la carpeta 'storage'
-#    Esto es CRUCIAL porque el volumen se monta en tiempo de ejecución.
-#    El usuario 'sail' (UID 1337 por defecto) necesita permisos para escribir en el volumen.
 chown -R sail:sail /var/www/html/storage
 chmod -R 775 /var/www/html/storage
 
-# 2. Crea el enlace simbólico si no existe
-#    Esto DEBE ejecutarse en el inicio del contenedor, DESPUÉS del montaje del volumen
-#    y DESPUÉS de asegurar los permisos de la carpeta 'storage'.
+# Crea el enlace simbólico si no existe (útil para logs/caché o si decides usarlo para algo más)
 if [ ! -L /var/www/html/public/storage ]; then
     php artisan storage:link
 fi
 
-
 if [ $# -gt 0 ]; then
     exec gosu $WWWUSER "$@"
 else
-    # Esto es lo que inicia PHP-FPM y tu servidor web (Nginx/Apache)
+    # Iniciar Supervisor para gestionar PHP-FPM
     exec /usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf
 fi

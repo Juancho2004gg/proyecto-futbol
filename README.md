@@ -38,7 +38,7 @@ El proyecto está centrado en el diseño y prototipo funcional de la plataforma 
     * [Descargar Node.js](https://nodejs.org/en/download/) (Incluye npm)
 * **npm o Yarn:** Gestor de paquetes JavaScript. npm viene con Node.js.
 * **Servidor de Base de Datos:**  [MySQL](https://dev.mysql.com/downloads/mysql/)
-* **Servidor Web:** Docker para Laravel Sail: [Docker Desktop](https://www.docker.com/products/docker-desktop/)
+* **Servidor Web:** Durante el desarrollo se uso Docker para Laravel Sail: [Docker Desktop](https://www.docker.com/products/docker-desktop/) 
 
 **Realizar instalacion en WSL:** Todas las instalaciones de PHP, Composer, Node.js y npm se deben realizar *dentro* de la distribución WSL (ej. Ubuntu).
 
